@@ -320,14 +320,6 @@ const TranslationLayout = () => {
                     </div>
                 </div>
 
-                {/* Center Floating Controls */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center justify-center pointer-events-none md:flex hidden">
-                    <div className="bg-gray-800 rounded-full px-6 py-3 flex items-center space-x-6 text-white shadow-2xl pointer-events-auto">
-                        <button className="hover:text-gray-300" onClick={() => handleSpeak(inputText, sourceLang)} title="Speak source"><Volume2 size={20} /></button>
-                        <button className="hover:text-gray-300" onClick={() => handleSpeak(translatedText, targetLang)} title="Speak translation"><Volume2 size={20} className="text-teal-300" /></button>
-                        <button className="hover:text-gray-300"><MoreVertical size={20} /></button>
-                    </div>
-                </div>
             </div>
         </div>
     );

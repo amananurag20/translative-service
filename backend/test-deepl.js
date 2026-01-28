@@ -4,8 +4,7 @@ const axios = require("axios");
 const DEEPL_API_KEY = process.env.DEEL_API;
 const DEEPL_API_URL = "https://api-free.deepl.com/v2/translate";
 
-console.log("Testing DeepL API...");
-console.log("API Key found:", DEEPL_API_KEY ? "Yes" : "No");
+
 
 async function testTranslation() {
     try {

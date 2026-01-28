@@ -221,13 +221,10 @@ const TranslationLayout = () => {
                             )}
                         </div>
 
-                        <div className="flex-1 relative">
-                            <textarea
-                                className="w-full h-full resize-none border-none outline-none text-2xl md:text-3xl text-gray-700 leading-relaxed bg-transparent placeholder-gray-300"
-                                placeholder="Start speaking or typing..."
-                                value={inputText}
-                                onChange={(e) => setInputText(e.target.value)}
-                            />
+                        <div className="flex-1 relative flex items-center justify-center">
+                            <div className="text-2xl md:text-3xl text-gray-700 leading-relaxed text-center">
+                                {inputText || <span className="text-gray-300">Tap to speak...</span>}
+                            </div>
                             {/* Visual Indicator of 'Active' */}
                             {isListeningSource && <div className="absolute top-2 right-2 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>}
                         </div>

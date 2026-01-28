@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import '../App.css';
 import { Mic, Volume2, MoreVertical, X, Globe, Settings, Maximize2, ZoomIn, MicOff, MoreHorizontal } from 'lucide-react';
 
 const TranslationLayout = () => {
@@ -10,6 +11,8 @@ const TranslationLayout = () => {
     const [isTranslating, setIsTranslating] = useState(false);
     const [isListeningSource, setIsListeningSource] = useState(false);
     const [isListeningTarget, setIsListeningTarget] = useState(false);
+
+    const [isPressed, setIsPressed] = useState(false);
 
     const sourceRecognitionRef = useRef(null);
     const targetRecognitionRef = useRef(null);
@@ -195,8 +198,9 @@ const TranslationLayout = () => {
                     <button className="text-xs font-medium text-gray-400 bg-gray-100 px-3 py-1 rounded-full">Toggle Dev Mode</button>
                 </header>
 
-                <div className="flex-1 flex flex-col md:flex-row w-full h-full">
+                <div className="flex-1 flex flex-col md:flex-row w-full h-full ">
                     {/* Left Panel (Source) */}
+
                     <div className="flex-1 p-6 md:p-12 flex flex-col relative border-r border-gray-100 bg-[#fefefe]">
                         <div className="flex items-center justify-between mb-6">
                             <select
@@ -221,7 +225,7 @@ const TranslationLayout = () => {
                             )}
                         </div>
 
-                        <div className="flex-1 relative flex items-center justify-center">
+                        <div className="flex-1 relative flex items-center justify-center ">
                             <div className="text-2xl md:text-3xl text-gray-700 leading-relaxed text-center">
                                 {inputText || <span className="text-gray-300">Tap to speak...</span>}
                             </div>
@@ -229,17 +233,24 @@ const TranslationLayout = () => {
                             {isListeningSource && <div className="absolute top-2 right-2 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>}
                         </div>
 
-                        <div className="mt-auto pt-6 flex flex-col items-center">
+
+                        {/* <div className="mt-auto pt-6 flex flex-col items-center faded-yellow h-full "> */}
+
+                        <div className={`mt-auto pt-92 flex flex-col items-center  h-full ${isListeningSource ? 'faded-yellow' : ''}`}>
+
+
                             <div className="mb-3 text-sm text-gray-400 font-medium">
                                 {isListeningSource ? 'Listening...' : 'Tap to speak'}
                             </div>
                             <button
                                 onClick={toggleSourceListening}
-                                className={`w-full h-24 rounded-2xl transition-all flex items-center justify-center shadow-lg transform active:scale-95 duration-200 ${isListeningSource ? 'bg-yellow-100 animate-pulse shadow-yellow-200 shadow-xl' : 'bg-yellow-200 hover:bg-yellow-300'}`}
+                                className={`w-full h-24 rounded-2xl transition-all flex items-center justify-center shadow-lg transform active:scale-95 duration-200 ${isListeningSource ? 'bg-yellow-500 animate-pulse  shadow-yellow-200 shadow-[100px]' : 'bg-yellow-200 hover:bg-yellow-300'}`}
                             >
                                 <Mic size={32} className="text-gray-800" />
                             </button>
+
                         </div>
+                        {/* </div> */}
                     </div>
 
                     {/* Right Panel (Target) */}
@@ -332,7 +343,7 @@ const TranslationLayout = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

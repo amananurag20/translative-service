@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Mic, Volume2, MoreVertical, X, Globe, Settings, Maximize2, ZoomIn, MicOff } from 'lucide-react';
+import { Mic, Volume2, MoreVertical, X, Globe, Settings, Maximize2, ZoomIn, MicOff, MoreHorizontal } from 'lucide-react';
 
 const TranslationLayout = () => {
     const [inputText, setInputText] = useState('');
@@ -235,9 +235,9 @@ const TranslationLayout = () => {
                             </div>
                             <button
                                 onClick={toggleSourceListening}
-                                className={`w-full h-24 rounded-2xl transition-colors flex items-center justify-center shadow-lg transform active:scale-95 duration-200 ${isListeningSource ? 'bg-red-100 hover:bg-red-200' : 'bg-yellow-200 hover:bg-yellow-300'}`}
+                                className={`w-full h-24 rounded-2xl transition-all flex items-center justify-center shadow-lg transform active:scale-95 duration-200 ${isListeningSource ? 'bg-yellow-100 animate-pulse shadow-yellow-200 shadow-xl' : 'bg-yellow-200 hover:bg-yellow-300'}`}
                             >
-                                {isListeningSource ? <MicOff size={32} className="text-red-600" /> : <Mic size={32} className="text-gray-800" />}
+                                <Mic size={32} className="text-gray-800" />
                             </button>
                         </div>
                     </div>
@@ -317,6 +317,20 @@ const TranslationLayout = () => {
                     </div>
                 </div>
 
+                {/* Center Floating Circular Icon */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 hidden md:flex">
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 ${(isListeningSource || isListeningTarget) ? 'bg-yellow-100 animate-pulse' : 'bg-white'}`}>
+                        {(isListeningSource || isListeningTarget) ? (
+                            <div className="flex space-x-1">
+                                <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                                <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                                <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                            </div>
+                        ) : (
+                            <Mic size={24} className="text-gray-700" />
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );
